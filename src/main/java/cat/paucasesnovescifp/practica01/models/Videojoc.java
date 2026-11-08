@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cat.paucasesnovescifp.practica01.models;
 
 import cat.paucasesnovescifp.practica01.exceptions.EmptyNameException;
@@ -9,14 +5,10 @@ import cat.paucasesnovescifp.practica01.utils.Platform;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author Alumne
- */
 public class Videojoc {
     private String nom;
     private String creador;
-    private Map<Platform, Integer> unitatsDisponibles;
+    private final Map<Platform, Integer> unitatsDisponibles;
     
     public Videojoc(String nom, String creador, int unitatsInicials) throws EmptyNameException {
         setNom(nom);
