@@ -2,6 +2,7 @@ package cat.paucasesnovescifp.practica01.controllers;
 
 import cat.paucasesnovescifp.practica01.exceptions.EmptyNameException;
 import cat.paucasesnovescifp.practica01.exceptions.OutOfStockException;
+import cat.paucasesnovescifp.practica01.exceptions.WrongFormatException;
 import cat.paucasesnovescifp.practica01.models.*;
 import cat.paucasesnovescifp.practica01.utils.Platform;
 import java.time.Duration;
@@ -23,7 +24,7 @@ public class LloguerController {
         
         try {
             lloguers.add(new Lloguer(
-                    new Usuari("John User", "123 456 789"),
+                    new Usuari("John User", "johnuser@gmail.com"),
                     new Videojoc("DELTARUNE", "Toby Fox", 5, List.of(Platform.PS5, Platform.SWITCH2)),
                     Platform.SWITCH2,
                     LocalDate.now().minus(Duration.ofDays(5)),
@@ -31,13 +32,13 @@ public class LloguerController {
             ));
             
             lloguers.add(new Lloguer(
-                    new Usuari("Jane Client", "987 654 321"),
+                    new Usuari("Jane Client", "janeclient@gmail.com"),
                     new Videojoc("JoJo's Bizarre Adventure: All Star Battle R", "CyberConnect2", 5, List.of(Platform.XBOX, Platform.PC)),
                     Platform.SWITCH2,
                     LocalDate.now().minus(Duration.ofDays(15)),
                     LocalDate.now().minus(Duration.ofDays(5))
             ));
-        } catch(EmptyNameException ex) {
+        } catch(EmptyNameException | WrongFormatException ex) {
             System.err.println("Els lloguers inicials llencen errors, per favor corregeix-los abans d'entregar.");
         }
         update();
