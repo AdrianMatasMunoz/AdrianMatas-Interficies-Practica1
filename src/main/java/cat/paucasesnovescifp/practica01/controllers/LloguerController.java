@@ -34,8 +34,8 @@ public class LloguerController {
                     new Usuari("Jane Client", "987 654 321"),
                     new Videojoc("JoJo's Bizarre Adventure: All Star Battle R", "CyberConnect2", 5, List.of(Platform.XBOX, Platform.PC)),
                     Platform.SWITCH2,
-                    LocalDate.now().minus(Duration.ofDays(5)),
-                    LocalDate.now().plus(Duration.ofDays(5))
+                    LocalDate.now().minus(Duration.ofDays(15)),
+                    LocalDate.now().minus(Duration.ofDays(5))
             ));
         } catch(EmptyNameException ex) {
             System.err.println("Els lloguers inicials llencen errors, per favor corregeix-los abans d'entregar.");

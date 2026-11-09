@@ -74,6 +74,11 @@ public class MainScreen extends javax.swing.JFrame {
         jScrollPane.setViewportView(jTable);
 
         jMenuAdd.setText("Add");
+        jMenuAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuAddMousePressed(evt);
+            }
+        });
         jMenuBar.add(jMenuAdd);
 
         setJMenuBar(jMenuBar);
@@ -91,6 +96,10 @@ public class MainScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuAddMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAddMousePressed
+        new LloguerRegisterScreen(this, true).setVisible(true);
+    }//GEN-LAST:event_jMenuAddMousePressed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new MainScreen().setVisible(true));
