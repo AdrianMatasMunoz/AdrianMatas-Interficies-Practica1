@@ -5,7 +5,7 @@ import cat.paucasesnovescifp.practica01.exceptions.WrongFormatException;
 import java.util.regex.Pattern;
 
 public class Usuari {
-    private static final Pattern EMAIL_REGEX = Pattern.compile("^\\w+@\\w+\\.\\w+\\$", Pattern.MULTILINE);
+    private static final Pattern EMAIL_REGEX = Pattern.compile("^\\w+@\\w+\\.\\w+$", Pattern.MULTILINE);
     
     private String nom;
     private String contacte;
