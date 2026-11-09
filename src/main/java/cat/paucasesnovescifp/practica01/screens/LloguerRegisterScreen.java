@@ -200,15 +200,16 @@ public class LloguerRegisterScreen extends javax.swing.JDialog {
                     new Lloguer(
                             new Usuari(jTextFieldUserName.getText(), jTextFieldUserContact.getText()),
                             new Videojoc(jTextFieldGameName.getText(), "GameCompany", 5, List.of(Platform.PC, Platform.PS5, Platform.SWITCH2, Platform.XBOX)),
-                            Platform.valueOf(jComboBoxGamePlatform.getActionCommand()),
+                            Platform.valueOf(jComboBoxGamePlatform.getSelectedItem().toString()),
                             LocalDate.now(),
-                            LocalDate.now().plus(Duration.ofDays(jSliderDays.getValue()))
+                            LocalDate.now().plusDays(jSliderDays.getValue())
                     )
                 );
             } catch(EmptyNameException | WrongFormatException ex) {
                 ex.printStackTrace();
             }
             LloguerController.instance.update();
+            mainScreen.updateLocalization();
             
             this.dispose();
         }

@@ -27,16 +27,16 @@ public class LloguerController {
                     new Usuari("John User", "johnuser@gmail.com"),
                     new Videojoc("DELTARUNE", "Toby Fox", 5, List.of(Platform.PS5, Platform.SWITCH2)),
                     Platform.SWITCH2,
-                    LocalDate.now().minus(Duration.ofDays(5)),
-                    LocalDate.now().plus(Duration.ofDays(5))
+                    LocalDate.now().minusDays(20),
+                    LocalDate.now().minusDays(10)
             ));
             
             lloguers.add(new Lloguer(
                     new Usuari("Jane Client", "janeclient@gmail.com"),
                     new Videojoc("JoJo's Bizarre Adventure: All Star Battle R", "CyberConnect2", 5, List.of(Platform.XBOX, Platform.PC)),
-                    Platform.SWITCH2,
-                    LocalDate.now().minus(Duration.ofDays(15)),
-                    LocalDate.now().minus(Duration.ofDays(5))
+                    Platform.PC,
+                    LocalDate.now().minusDays(15),
+                    LocalDate.now().minusDays(5)
             ));
         } catch(EmptyNameException | WrongFormatException ex) {
             System.err.println("Els lloguers inicials llencen errors, per favor corregeix-los abans d'entregar.");
@@ -64,6 +64,21 @@ public class LloguerController {
                 lloguers.remove(lloguer);
             }
         }
+    }
+    
+    public String[][] toTableData() {
+        String[][] data = new String[lloguers.size()][6];
+        
+        for(int i = 0; i < lloguers.size(); i++) {
+            data[i][0] = lloguers.get(i).usuari().getNom();
+            data[i][1] = lloguers.get(i).videojoc().getNom();
+            data[i][2] = lloguers.get(i).plataforma().toString();
+            data[i][3] = lloguers.get(i).dataInicial().toString();
+            data[i][4] = lloguers.get(i).dataPrevista().toString();
+            data[i][5] = lloguers.get(i).dataPrevista().isBefore(LocalDate.now()) ? "Fora de Termini" : "Retornat";
+        }
+        
+        return data;
     }
     
     public Usuari getUserByName(String name) {

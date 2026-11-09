@@ -1,7 +1,13 @@
 package cat.paucasesnovescifp.practica01.screens;
 
+import cat.paucasesnovescifp.practica01.controllers.LloguerController;
 import cat.paucasesnovescifp.practica01.utils.LocaleUtil;
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 public class MainScreen extends javax.swing.JFrame {
     
@@ -13,9 +19,10 @@ public class MainScreen extends javax.swing.JFrame {
         updateLocalization();
     }
     
-    private void updateLocalization() {
+    public void updateLocalization() {
         jMenuAdd.setText(LocaleUtil.getLocalizedString("add_menu_label"));
         tableModel = new DefaultTableModel(
+            LloguerController.instance.toTableData(),
             new String[] {
                 LocaleUtil.getLocalizedString("user_label"),
                 LocaleUtil.getLocalizedString("game_label"),
@@ -23,7 +30,7 @@ public class MainScreen extends javax.swing.JFrame {
                 LocaleUtil.getLocalizedString("initial_date_label"),
                 LocaleUtil.getLocalizedString("expected_date_label"),
                 LocaleUtil.getLocalizedString("state_label")
-            }, 4
+            }
         ) {
             @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -32,6 +39,20 @@ public class MainScreen extends javax.swing.JFrame {
         };
         
         jTable.setModel(tableModel);
+        jTable.getColumnModel().getColumn(5).setCellRenderer(new DefaultTableCellRenderer() {
+            public Component getTableCellRendererComponent(JTable table, Object value,
+                                            boolean isSelected, boolean hasFocus,
+                                            int row, int column) {
+                Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                
+                if(column == 5) {
+                    component.setBackground(value.toString().equals("Retornat") ? Color.green : Color.red);
+                }
+                
+                return component;
+            }
+        });
+        //renderer.setBackground(Color.red);
     }
     
     @SuppressWarnings("unchecked")
